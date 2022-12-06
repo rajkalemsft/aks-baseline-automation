@@ -6,10 +6,10 @@
             "value": "eastus2"
         },
         "clusterAdminAadGroupObjectId": {
-            "value": ""
+            "value": "c542b993-4e3e-43ee-b25b-1f3275919489"
         },
         "a0008NamespaceReaderAadGroupObjectId": {
-            "value": ""
+            "value": "c6f78afa-7bf2-45f1-a852-0f7bf2e1b75e"
         },
         "domainName": {
             "value": "contoso.com"

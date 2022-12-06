@@ -272,9 +272,7 @@ module cluster '../CARML/Microsoft.ContainerService/managedClusters/deploy.bicep
         enableNodePublicIP: false
         maxPods: 30
         availabilityZones: [
-          '1'
           '2'
-          '3'
         ]
         upgradeSettings: {
           maxSurge: '33%'
