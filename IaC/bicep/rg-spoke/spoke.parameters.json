@@ -3,10 +3,10 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "resourceGroupName": {
-            "value": "rg-enterprise-networking-spokes"
+            "value": "rg-enterprise-networking-spokes-automation"
         },
         "location": {
-            "value": "westus2"
+            "value": "eastus2"
         },
         "clusterVnetAddressSpace": {
             "value": "10.240.0.0/16"
