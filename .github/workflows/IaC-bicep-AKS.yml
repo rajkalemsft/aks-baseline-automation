@@ -10,7 +10,7 @@ on:
       REGION:
         description: 'The Azure region to deploy to'
         required: true
-        default: westus2
+        default: eastus2
       clusterAdminAadGroupObjectId:
         description: 'K8S Admin Azure AAD Group ObjectID'
         required: true
@@ -115,7 +115,7 @@ jobs:
           region: ${{ github.event.inputs.REGION }}
           scope: subscription
           template: ./IaC/bicep/rg-hub/hub-default.bicep
-          parameters: ./IaC/bicep/rg-hub/hub-default.parameters.json  resourceGroupName=rg-enterprise-networking-hubs-${{ github.event.inputs.REGION }} location=${{ github.event.inputs.REGION }}
+          parameters: ./IaC/bicep/rg-hub/hub-default.parameters.json  resourceGroupName=rg-enterprise-networking-hubs-automation-${{ github.event.inputs.REGION }} location=${{ github.event.inputs.REGION }}
           failOnStdErr: false
           deploymentName: carml-hub-${{ github.event.inputs.REGION }}
 
@@ -127,7 +127,7 @@ jobs:
           region: ${{ github.event.inputs.REGION }}
           scope: subscription
           template: ./IaC/bicep/rg-spoke/spoke.bicep
-          parameters: ./IaC/bicep/rg-spoke/spoke.parameters.json hubVnetResourceId=${{ steps.hub.outputs.hubVnetId }} hubLaWorkspaceResourceId=${{ steps.hub.outputs.hubLaWorkspaceResourceId }} hubFwResourceId=${{ steps.hub.outputs.hubFwResourceId }} resourceGroupName=rg-enterprise-networking-spokes-${{ github.event.inputs.REGION }} location=${{ github.event.inputs.REGION }}
+          parameters: ./IaC/bicep/rg-spoke/spoke.parameters.json hubVnetResourceId=${{ steps.hub.outputs.hubVnetId }} hubLaWorkspaceResourceId=${{ steps.hub.outputs.hubLaWorkspaceResourceId }} hubFwResourceId=${{ steps.hub.outputs.hubFwResourceId }} resourceGroupName=rg-enterprise-networking-spokes-automation-${{ github.event.inputs.REGION }} location=${{ github.event.inputs.REGION }}
           failOnStdErr: false
           deploymentName: carml-spoke-${{ github.event.inputs.REGION }}
 
@@ -139,7 +139,7 @@ jobs:
           region: ${{ github.event.inputs.REGION }}
           scope: subscription
           template: ./IaC/bicep/rg-spoke/acr.bicep
-          parameters: ./IaC/bicep/rg-spoke/acr.parameters.json targetVnetResourceId=${{ steps.spoke.outputs.clusterVnetResourceId }} location=${{ github.event.inputs.REGION }} resourceGroupName=rg-BU0001A0008-${{ github.event.inputs.REGION }}
+          parameters: ./IaC/bicep/rg-spoke/acr.parameters.json targetVnetResourceId=${{ steps.spoke.outputs.clusterVnetResourceId }} location=${{ github.event.inputs.REGION }} resourceGroupName=rg-BU0001A0010-${{ github.event.inputs.REGION }}
           failOnStdErr: false
           deploymentName: carml-registry-${{ github.event.inputs.REGION }}
 
@@ -158,7 +158,7 @@ jobs:
           region: ${{ github.event.inputs.REGION }}
           scope: subscription
           template: ./IaC/bicep/rg-spoke/clusterprereq.bicep
-          parameters: ./IaC/bicep/rg-spoke/clusterprereq.parameters.json appGatewayListenerCertificate=${{ env.APP_GATEWAY_LISTENER_CERTIFICATE }} aksIngressControllerCertificate=${{ env.AKS_INGRESS_CONTROLLER_CERTIFICATE }} targetVnetResourceId=${{ steps.spoke.outputs.clusterVnetResourceId }} vNetResourceGroup=rg-enterprise-networking-spokes-${{ github.event.inputs.REGION }} location=${{ github.event.inputs.REGION }} resourceGroupName=rg-BU0001A0008-${{ github.event.inputs.REGION }}
+          parameters: ./IaC/bicep/rg-spoke/clusterprereq.parameters.json appGatewayListenerCertificate=${{ env.APP_GATEWAY_LISTENER_CERTIFICATE }} aksIngressControllerCertificate=${{ env.AKS_INGRESS_CONTROLLER_CERTIFICATE }} targetVnetResourceId=${{ steps.spoke.outputs.clusterVnetResourceId }} vNetResourceGroup=rg-enterprise-networking-spokes-automation-${{ github.event.inputs.REGION }} location=${{ github.event.inputs.REGION }} resourceGroupName=rg-BU0001A0010-${{ github.event.inputs.REGION }}
           failOnStdErr: false
           deploymentName: carml-cluster-${{ github.event.inputs.REGION }}
 
@@ -170,7 +170,7 @@ jobs:
           region: ${{ github.event.inputs.REGION }}
           scope: subscription
           template: ./IaC/bicep/rg-spoke/cluster.bicep
-          parameters: ./IaC/bicep/rg-spoke/cluster.parameters.json targetVnetResourceId=${{ steps.spoke.outputs.clusterVnetResourceId }} clusterAdminAadGroupObjectId=${{ github.event.inputs.clusterAdminAadGroupObjectId }} a0008NamespaceReaderAadGroupObjectId=${{ github.event.inputs.a0008NamespaceReaderAadGroupObjectId }} vNetResourceGroup=rg-enterprise-networking-spokes-${{ github.event.inputs.REGION }} location=${{ github.event.inputs.REGION }} resourceGroupName=rg-BU0001A0008-${{ github.event.inputs.REGION }} gitOpsBootstrappingRepoBranch=${{ github.ref_name }}
+          parameters: ./IaC/bicep/rg-spoke/cluster.parameters.json targetVnetResourceId=${{ steps.spoke.outputs.clusterVnetResourceId }} clusterAdminAadGroupObjectId=${{ github.event.inputs.clusterAdminAadGroupObjectId }} a0008NamespaceReaderAadGroupObjectId=${{ github.event.inputs.a0008NamespaceReaderAadGroupObjectId }} vNetResourceGroup=rg-enterprise-networking-spokes-automation-${{ github.event.inputs.REGION }} location=${{ github.event.inputs.REGION }} resourceGroupName=rg-BU0001A0010-${{ github.event.inputs.REGION }} gitOpsBootstrappingRepoBranch=${{ github.ref_name }}
           failOnStdErr: false
           deploymentName: carml-cluster-${{ github.event.inputs.REGION }}
 
@@ -178,7 +178,7 @@ jobs:
       - name: "Get KeyVault Name"
         id: akv_name
         run: |
-          export AKV_NAME=$(az deployment group list -g rg-BU0001A0008-${{ github.event.inputs.REGION }} -o table| grep 'kv-aks'|awk '{print $1}')
+          export AKV_NAME=$(az deployment group list -g rg-BU0001A0010-${{ github.event.inputs.REGION }} -o table| grep 'kv-aks'|awk '{print $1}')
           echo "AKV_NAME=${AKV_NAME}" >> $GITHUB_ENV
           echo "AKV Name from bicep output is ${{ steps.cluster.outputs.keyVaultName }}"
           echo "aksIngressControllerPodManagedIdentityResourceId from bicep output is ${{ steps.cluster.outputs.aksIngressControllerPodManagedIdentityResourceId }}"

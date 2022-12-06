@@ -39,14 +39,14 @@ spec:
 # spec:
 #   tls:
 #   - hosts:
-#       - <use fqdn that matches what is configured in app gateway eg bu0001a0008-00.aks-ingress.contoso.com>
+#       - <use fqdn that matches what is configured in app gateway eg BU0001A0010-00.aks-ingress.contoso.com>
 #         # It is possible to opt for certificate management strategy with dedicated
 #         # certificates for each TLS SNI route.
 #         # In this Reference Implementation for the sake of simplicity we use a
 #         # wildcard default certificate added at Ingress Controller configuration level which is *.example.com
-#         # secretName: <bu0001a0008-00-example-com-tls-secret>
+#         # secretName: <BU0001A0010-00-example-com-tls-secret>
 #   rules:
-#   - host: <use fqdn that matches what is configured in app gateway eg bu0001a0008-00.aks-ingress.contoso.com> 
+#   - host: <use fqdn that matches what is configured in app gateway eg BU0001A0010-00.aks-ingress.contoso.com> 
 #     http:
 #       paths:
 #       - path: /

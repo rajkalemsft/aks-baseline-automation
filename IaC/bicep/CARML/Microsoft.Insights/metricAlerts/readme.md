@@ -420,7 +420,7 @@ module metricAlerts './Microsoft.Insights/metricAlerts/deploy.bicep' = {
         roleDefinitionIdOrName: 'Reader'
       }
     ]
-    targetResourceRegion: 'westus2'
+    targetResourceRegion: 'eastus2'
     targetResourceType: 'microsoft.compute/virtualmachines'
     windowSize: 'PT15M'
   }
@@ -476,7 +476,7 @@ module metricAlerts './Microsoft.Insights/metricAlerts/deploy.bicep' = {
       ]
     },
     "targetResourceRegion": {
-      "value": "westus2"
+      "value": "eastus2"
     },
     "targetResourceType": {
       "value": "microsoft.compute/virtualmachines"

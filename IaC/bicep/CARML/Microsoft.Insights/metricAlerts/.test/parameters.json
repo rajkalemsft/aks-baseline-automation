@@ -17,7 +17,7 @@
             "value": "microsoft.compute/virtualmachines"
         },
         "targetResourceRegion": {
-            "value": "westus2"
+            "value": "eastus2"
         },
         "criterias": {
             "value": [
