@@ -241,9 +241,7 @@ module cluster '../CARML/Microsoft.ContainerService/managedClusters/deploy.bicep
         maxPods: 30
         enableAzureRBAC: true
         availabilityZones: [
-          '1'
           '2'
-          '3'
         ]
         upgradeSettings: {
           maxSurge: '33%'
