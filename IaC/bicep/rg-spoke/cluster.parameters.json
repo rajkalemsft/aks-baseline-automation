@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "location": {
-            "value": "westus2"
+            "value": "eastus2"
         },
         "clusterAdminAadGroupObjectId": {
             "value": ""
@@ -18,7 +18,7 @@
             "value": "1.23.8"
         },
         "gitOpsBootstrappingRepoHttpsUrl": {
-            "value": "https://github.com/Azure/aks-baseline-automation"
+            "value": "https://github.com/rajkalemsft/aks-baseline-automation"
         },
         "gitOpsBootstrappingRepoBranch": {
             "value": "main"

@@ -1,9 +1,9 @@
 targetScope = 'subscription'
 
 @description('Name of the resource group')
-param resourceGroupName string = 'rg-bu0001a0008'
+param resourceGroupName string = 'rg-BU0001A0010'
 
-param vNetResourceGroup string = 'rg-enterprise-networking-spokes'
+param vNetResourceGroup string = 'rg-enterprise-networking-spokes-automation'
 
 @description('AKS Service, Node Pool, and supporting services (KeyVault, App Gateway, etc) region. This needs to be the same region as the vnet provided in these parameters.')
 @allowed([
@@ -44,7 +44,7 @@ var logAnalyticsWorkspaceName = 'la-${clusterName}'
 var agwName = 'apw-${clusterName}'
 var akvPrivateDnsZonesName = 'privatelink.vaultcore.azure.net'
 var aksIngressDomainName = 'aks-ingress.${domainName}'
-var aksBackendDomainName = 'bu0001a0008-00.${aksIngressDomainName}'
+var aksBackendDomainName = 'BU0001A0010-00.${aksIngressDomainName}'
 var vnetName = split(targetVnetResourceId, '/')[8]
 var clusterNodesSubnetName = 'snet-clusternodes'
 var vnetNodePoolSubnetResourceId = '${targetVnetResourceId}/subnets/${clusterNodesSubnetName}'
@@ -346,7 +346,7 @@ module agw '../CARML/Microsoft.Network/applicationGateways/deploy.bicep' = {
         name: 'apw-frontend-ip-configuration'
         properties: {
           publicIPAddress: {
-            id: '${subscription().id}/resourceGroups/${vNetResourceGroup}/providers/Microsoft.Network/publicIpAddresses/pip-BU0001A0008-00'
+            id: '${subscription().id}/resourceGroups/${vNetResourceGroup}/providers/Microsoft.Network/publicIpAddresses/pip-BU0001A0010-00'
           }
         }
       }

@@ -1,8 +1,8 @@
 targetScope = 'subscription'
 
 @description('Name of the resource group')
-param resourceGroupName string = 'rg-bu0001a0008'
-param vNetResourceGroup string = 'rg-enterprise-networking-spokes'
+param resourceGroupName string = 'rg-BU0001A0010'
+param vNetResourceGroup string = 'rg-enterprise-networking-spokes-automation'
 
 @description('The regional network spoke VNet Resource ID that the cluster will be joined to')
 @minLength(79)
@@ -68,7 +68,7 @@ param gitOpsBootstrappingRepoBranch string
 // var clusterReaderRoleId = '7f6c6a51-bcf8-42ba-9220-52d62157d7db'
 // var serviceClusterUserRoleId = '4abbcc35-e782-43d8-92c5-2d3f1bd2253f'
 var subRgUniqueString = uniqueString('aks', subscription().subscriptionId, resourceGroupName, location)
-var nodeResourceGroupName = 'rg-${clusterName}-nodepools'
+var nodeResourceGroupName = 'rg-${clusterName}-nodepools-automation'
 var clusterName = 'aks-${subRgUniqueString}'
 var logAnalyticsWorkspaceName = 'la-${clusterName}'
 var defaultAcrName = 'acraks${subRgUniqueString}'
@@ -127,7 +127,7 @@ module aksIngressDomain '../CARML/Microsoft.Network/privateDnsZones/deploy.bicep
     name: aksIngressDomainName
     a: [
       {
-        name: 'bu0001a0008-00'
+        name: 'BU0001A0010-00'
         ttl: 3600
         aRecords: [
           {
