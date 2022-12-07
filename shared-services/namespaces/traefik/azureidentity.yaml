@@ -5,7 +5,7 @@ metadata:
   namespace: traefik
 spec:
   type: 0
-  resourceID: ccc8d057-9d95-4bc2-82f5-ac4efa595cae
+  resourceID: /subscriptions/f75f6327-8759-4b37-87d4-b44bb79ba52b/resourceGroups/rg-BU0001A0010-eastus2/providers/Microsoft.ManagedIdentity/userAssignedIdentities/podmi-ingress-controller
   clientID: 1d818984-5e08-42c7-97f6-4a82d8009a9c
 ---
 apiVersion: aadpodidentity.k8s.io/v1
