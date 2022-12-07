@@ -450,7 +450,7 @@ module kubernetesConfigurationFlux '../CARML/Microsoft.KubernetesConfiguration/e
       'helm-controller.enabled': 'false'
       'source-controller.enabled': 'true'
       'kustomize-controller.enabled': 'true'
-      'notification-controller.enabled': 'false'
+      'notification-controller.enabled': 'true'
       'image-automation-controller.enabled': 'false'
       'image-reflector-controller.enabled': 'false'
     }
