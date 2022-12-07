@@ -367,7 +367,7 @@ module cluster '../CARML/Microsoft.ContainerService/managedClusters/deploy.bicep
     diagnosticWorkspaceId: clusterLa.id
     tags: {
       'Business unit': 'BU0001'
-      'Application identifier': 'a0008'
+      'Application identifier': 'a0010'
     }
   }
   scope: resourceGroup(resourceGroupName)
