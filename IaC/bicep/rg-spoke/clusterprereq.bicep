@@ -258,11 +258,11 @@ module keyVault '../CARML/Microsoft.KeyVault/vaults/deploy.bicep' = {
 }
 
 module frontendCert '../CARML/Microsoft.KeyVault/vaults/secrets/deploy.bicep' = {
-  name: 'frontendCert'
+  name: 'gateway-public-cert'
   params: {
     value: appGatewayListenerCertificate
     keyVaultName: keyVaultName
-    name: 'frontendCert'
+    name: 'gateway-public-cert'
   }
   scope: resourceGroup(resourceGroupName)
   dependsOn: [
@@ -272,11 +272,11 @@ module frontendCert '../CARML/Microsoft.KeyVault/vaults/secrets/deploy.bicep' = 
 }
 
 module backendCert '../CARML/Microsoft.KeyVault/vaults/secrets/deploy.bicep' = {
-  name: 'backendCert'
+  name: 'appgw-ingress-internal-aks-ingress-tls'
   params: {
     value: aksIngressControllerCertificate
     keyVaultName: keyVaultName
-    name: 'backendCert'
+    name: 'appgw-ingress-internal-aks-ingress-tls'
   }
   scope: resourceGroup(resourceGroupName)
   dependsOn: [
