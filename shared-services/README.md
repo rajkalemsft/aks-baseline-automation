@@ -17,7 +17,7 @@ The **namespaces** directory contains the configuration for each namespace and t
   * Azure Monitor Prometheus Scraping
 * Namespace: **traefik**:
   * Ingress Controller [Traefik](#Traefik)
-* Namespace: **a0008**:
+* Namespace: **a0010**:
   * Ingress Network Policy
   * RBAC settings specific to this namespace (_optional_)
 

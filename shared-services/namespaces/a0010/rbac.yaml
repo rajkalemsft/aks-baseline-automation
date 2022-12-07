@@ -6,7 +6,7 @@
 #kind: RoleBinding
 #metadata:
 #  name: namespace-admin
-#  namespace: a0008
+#  namespace: a0010
 #roleRef:
 #  apiGroup: rbac.authorization.k8s.io
 #  kind: ClusterRole
@@ -19,7 +19,7 @@
 #kind: RoleBinding
 #metadata:
 #  name: namespace-editor
-#  namespace: a0008
+#  namespace: a0010
 #roleRef:
 #  apiGroup: rbac.authorization.k8s.io
 #  kind: ClusterRole
@@ -32,7 +32,7 @@
 #kind: RoleBinding
 #metadata:
 #  name: namespace-viewer
-#  namespace: a0008
+#  namespace: a0010
 #roleRef:
 #  apiGroup: rbac.authorization.k8s.io
 #  kind: ClusterRole
